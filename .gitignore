@@ -83,3 +83,6 @@ crashlytics-build.properties
 
 
 lib/
+
+yarn.lock
+*lock*

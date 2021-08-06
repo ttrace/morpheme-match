@@ -41,7 +41,7 @@
     "@types/mocha": "^8.2.2",
     "@types/node": "^14.14.41",
     "cross-env": "^7.0.3",
-    "documentation": "^9.1.1",
+    "documentation": "^13.2.5",
     "kuromojin": "^3.0.0",
     "mocha": "^8.3.2",
     "power-assert": "^1.4.2",
