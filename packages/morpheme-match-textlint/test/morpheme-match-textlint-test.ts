@@ -4,6 +4,7 @@ import * as assert from "assert";
 import { createTextlintMatcher } from "../src/morpheme-match-textlint";
 import { dictionariesA } from "./fixtures/dictionariesA";
 import { dictionariesMultiple } from "./fixtures/dictionariesB";
+import { dictionariesDebug } from "./fixtures/dictionariesC";
 
 const kuromojin = require("kuromojin");
 
@@ -46,5 +47,17 @@ describe("morpheme-match-textlint", () => {
         const text = "No match text";
         const results = await matchAll(text);
         assert.strictEqual(results.length, 0);
+    });
+    it("matchAll should warn following expression", async () => {
+        const matchAll = createTextlintMatcher({
+            dictionaries: dictionariesDebug,
+            tokenize: kuromojin.tokenize
+        });
+        const resultsC = await matchAll("名詞はは連続しない。");
+        const resultsD = await matchAll(" 名詞はは連続しない。");
+        const [resultC] = resultsC;
+        const [resultD] = resultsD;
+        assert.strictEqual(resultC.message, `「名詞はは」には助詞の連続があります（係助詞の連続） err 1`);
+        assert.strictEqual(resultD.message, `「名詞はは」には助詞の連続があります（係助詞の連続） err 1`);
     });
 });
