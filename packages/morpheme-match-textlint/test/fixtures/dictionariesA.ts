@@ -74,5 +74,6 @@ export const dictionariesA = [
                 basic_form: "いる"
             }
         ]
-    }
+    },
+    
 ];
